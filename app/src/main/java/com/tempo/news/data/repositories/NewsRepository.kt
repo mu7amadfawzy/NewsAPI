@@ -12,6 +12,6 @@ class NewsRepository(val dataSource: NewsDataSource) {
         q: String = "",
         page:Int,
         sortBy: String = "popularity",
-        source: String = "national-geographic"
+        source: String = "bbc-news"
     ) = dataSource.fetchArticles(q, sortBy, source,page)
 }

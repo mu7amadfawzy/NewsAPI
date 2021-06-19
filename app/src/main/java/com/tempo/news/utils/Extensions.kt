@@ -13,11 +13,11 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import com.google.android.material.snackbar.Snackbar
 import com.tempo.news.R
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.flow.*
 
 object Extensions {
     /**
@@ -58,6 +58,22 @@ object Extensions {
             addTextChangedListener(listener)
             awaitClose { removeTextChangedListener(listener) }
         }.onStart { emit(text) }
+    }
+    /**
+     * Extension function to set the action required on each text change with debounce
+     */
+    @FlowPreview
+    @ExperimentalCoroutinesApi
+    fun EditText.configDebounce(
+        onEach: (String) -> Any,
+        duration: Long = 700,
+        scope: CoroutineScope
+    ) {
+        textChanges().debounce(duration)
+            .onEach {
+                onEach.invoke(it.toString())
+            }
+            .launchIn(scope)
     }
 
     /**

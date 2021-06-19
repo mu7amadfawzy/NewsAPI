@@ -3,7 +3,7 @@
     package="com.tempo.news">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +15,7 @@
         <activity
             android:name="com.tempo.news.ui.home.HomeActivity"
             android:label=""
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.TempoNews.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +27,6 @@
             android:name="com.tempo.news.ui.home.details.ArticleDetailsActivity"
             android:label=""
             android:theme="@style/Theme.TempoNews.NoActionBar" />
-        <activity android:name=".ui.view_attachment.ViewAttachmentActivity" />
     </application>
 
 </manifest>

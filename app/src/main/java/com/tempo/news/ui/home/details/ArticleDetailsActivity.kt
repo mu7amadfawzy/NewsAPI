@@ -9,7 +9,6 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.tempo.news.data.model.ArticleDM
 import com.tempo.news.databinding.ActivityArticleDetailsBinding
-import com.tempo.news.ui.view_attachment.ViewAttachmentActivity
 import com.tempo.news.utils.Extensions.startActivity
 
 
@@ -67,9 +66,5 @@ class ArticleDetailsActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         ActivityCompat.finishAfterTransition(this)
-    }
-
-    fun onNewsImageCLicked(view: View) {
-        ViewAttachmentActivity.start(this, view.tag.toString(), view)
     }
 }

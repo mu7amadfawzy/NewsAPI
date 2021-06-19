@@ -43,7 +43,7 @@ class HomeActivityViewModel(private val repository: NewsRepository) : ViewModel(
     }
 
     private fun onSuccess(result: Result.Success<ResponseDM<List<ArticleDM>>>) {
-        newsResult.postValue(result.data.articles!!)
+        newsResult.postValue(result.data.articles)
         model.onSuccess()
     }
 

@@ -5,18 +5,13 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.FirebaseApp
 import com.tempo.news.R
 import com.tempo.news.databinding.ActivityHomeBinding
-import com.tempo.news.utils.Extensions.textChanges
+import com.tempo.news.utils.Extensions.configDebounce
 import com.tempo.news.utils.ThemeDialogHandler
 import com.tempo.news.utils.ViewModelFactory
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 
 class HomeActivity : AppCompatActivity() {
@@ -28,7 +23,6 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseApp.initializeApp(applicationContext)
         configViewModel()
         initViews()
     }
@@ -60,17 +54,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun configSearch() {
-        binding.searchEt.textChanges().debounce(700)
-            .onEach {
-                articlesAdapter.clearData()
-                viewModel.onQueryChanged(it.toString())
-            }
-            .launchIn(viewModel.viewModelScope)
+        binding.searchEt.configDebounce({
+            articlesAdapter.clearData()
+            viewModel.onQueryChanged(it.toString())
+        },700,lifecycleScope)
     }
 
     private fun configRecycler() {
         binding.recycler.apply {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(this@HomeActivity, LinearLayoutManager.VERTICAL, false)
             articlesAdapter = ArticlesAdapter(this@HomeActivity, ArrayList(), viewModel)
             adapter = articlesAdapter
         }

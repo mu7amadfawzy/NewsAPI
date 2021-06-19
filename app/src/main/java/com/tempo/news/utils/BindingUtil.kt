@@ -1,5 +1,6 @@
 package com.tempo.news.utils
 
+import android.annotation.SuppressLint
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.view.View
@@ -19,7 +20,6 @@ import com.tempo.news.utils.Extensions.afterTextChanged
 import com.tempo.news.utils.Extensions.snackError
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.*
 
 
 object BindingUtil {
@@ -105,19 +105,21 @@ object BindingUtil {
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     @BindingAdapter("formatDate")
     @JvmStatic
-    //converts date in format such as "2018-02-02t065457-744z"
+    //converts date in format such as "2021-06-07T14:44:06Z"
     fun formatDate(view: TextView, text: String?) {
-        val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        val output = SimpleDateFormat("MMM dd yy")
+        text?.let {
+            val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            val output = SimpleDateFormat("MMM dd yy")
 
-        var d: Date? = null
-        try {
-            d = input.parse("2018-02-02T06:54:57.744Z")
-            view.text = output.format(d)
-        } catch (e: ParseException) {
-            e.printStackTrace()
+            try {
+                val d = input.parse(text)
+                view.text = output.format(d!!)
+            } catch (e: ParseException) {
+                e.printStackTrace()
+            }
         }
     }
 

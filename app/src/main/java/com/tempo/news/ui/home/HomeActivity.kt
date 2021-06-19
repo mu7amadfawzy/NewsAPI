@@ -90,6 +90,4 @@ class HomeActivity : AppCompatActivity() {
         themeHandlerDialog =
             ThemeDialogHandler(this, callback = null, delegate)
     }
-
-
 }

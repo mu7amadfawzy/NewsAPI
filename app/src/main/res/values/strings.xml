@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Tempo News</string>
+
+    <string name="call_permission_clarification">Permission to access the microphone is required for this app to make calls.</string>
+    <string name="permission_required">Permission required</string>
+    <string name="ok">OK</string>
+    <string name="permission_denied">Permission Denied !</string>
+    <string name="call_action_cancelled">Call Action Cancelled</string>
+
+    <string name="transition">shared_element_transition</string>
+
+    <string name="theme">Theme</string>
+    <string name="choose_theme_text">Pick Theme</string>
+    <string name="light_theme">Light</string>
+    <string name="dark_theme">Dark</string>
+    <string name="system_efault_theme">System default</string>
+
+    <string name="details">Details</string>
+    <string name="author">Author</string>
+    <string name="retry">Retry</string>
+    <string name="emptyData">Try different search</string>
+    <string name="noDataFound">No Data Found !!</string>
+    <string name="search_articles">search articles…</string>
+    <string name="source">Source: </string>
+</resources>

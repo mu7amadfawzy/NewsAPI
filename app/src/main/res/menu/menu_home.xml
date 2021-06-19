@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_theme_changer"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_color_picker"
+        android:title="@string/choose_theme_text"
+        app:showAsAction="ifRoom" />
+</menu>

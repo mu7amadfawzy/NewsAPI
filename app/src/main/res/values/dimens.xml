@@ -1,0 +1,42 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="large_margin">16dp</dimen>
+
+    <dimen name="zero">0dp</dimen>
+    <dimen name="tiny">@dimen/_2sdp</dimen>
+    <dimen name="small">@dimen/_4sdp</dimen>
+    <dimen name="xSmall">@dimen/_5sdp</dimen>
+    <dimen name="medium">@dimen/_8sdp</dimen>
+    <dimen name="xMedium">@dimen/_10sdp</dimen>
+    <dimen name="large">@dimen/_12sdp</dimen>
+    <dimen name="xLarge">@dimen/_14sdp</dimen>
+    <dimen name="xxLarge">@dimen/_18sdp</dimen>
+    <dimen name="xxxLarge">@dimen/_24sdp</dimen>
+    <dimen name="huge">@dimen/_12sdp</dimen>
+
+    <dimen name="app_bar_height">220dp</dimen>
+    <dimen name="app_bar_height_long">320dp</dimen>
+    <dimen name="fab_margin">@dimen/large</dimen>
+    <dimen name="text_margin">@dimen/xLarge</dimen>
+
+    <dimen name="medium_text_size">14sp</dimen>
+    <dimen name="large_text_size">18sp</dimen>
+    <dimen name="larger_text_size">20sp</dimen>
+    <dimen name="largest_text_size">24sp</dimen>
+
+    <dimen name="call_icon_width">25dp</dimen>
+    <dimen name="delete_icon_width">50dp</dimen>
+    <dimen name="contact_icon_width">40dp</dimen>
+    <!--    it must be more than to leave space-->
+    <dimen name="contact_name_margin">50dp</dimen>
+
+    <dimen name="contact_row_card_padding">@dimen/medium</dimen>
+
+    <dimen name="overlap">35dp</dimen>
+    <dimen name="small_overlap">24dp</dimen>
+
+    <dimen name="news_image_short_height">80dp</dimen>
+    <dimen name="news_image_long_height">250dp</dimen>
+    <dimen name="news_row_overlap">-20dp</dimen>
+    <dimen name="default_corner_radius">8dp</dimen>
+</resources>

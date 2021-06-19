@@ -1,0 +1,71 @@
+<resources>
+    
+    <style name="expandedTitleTextAppBar" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/_18ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="collapsedTitleTextAppBar" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="expandedSubTitleTextAppBar" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+
+    <style name="collapsedSubTitleTextAppBar" parent="@android:style/TextAppearance">
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="actionMenuTextColorToolBarStyle" parent="Theme.AppCompat.Light">
+        <item name="android:textColorPrimary">@color/colorSecondary</item>
+        <item name="android:actionMenuTextColor">@color/colorSecondary</item>
+
+    </style>
+
+    <style name="inputEditTextTheme">
+        <item name="colorControlNormal">@color/colorSecondary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimaryVariant</item>
+    </style>
+
+
+
+    <style name="TEXT_BASE" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/_8ssp</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="TEXT_SMALL" parent="TEXT_BASE">
+        <item name="android:textSize">@dimen/_8ssp</item>
+    </style>
+
+    <style name="TEXT_XSMALL" parent="TEXT_BASE">
+        <item name="android:textSize">@dimen/_9ssp</item>
+    </style>
+
+    <style name="TEXT_MEDIUM" parent="TEXT_BASE">
+        <item name="android:textSize">@dimen/_10ssp</item>
+    </style>
+
+    <style name="TEXT_LARGE" parent="TEXT_BASE">
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <style name="TEXT_XLARGE" parent="TEXT_BASE">
+        <item name="android:textSize">@dimen/_14ssp</item>
+    </style>
+
+    <style name="TEXT_HUGE" parent="TEXT_BASE">
+        <item name="android:textSize">@dimen/_18ssp</item>
+    </style>
+
+</resources>

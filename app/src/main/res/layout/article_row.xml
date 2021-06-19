@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="dataModel"
+            type="com.tempo.news.data.model.ArticleDM" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:orientation="vertical">
+
+        <com.tempo.news.ui.custom_views.CorneredImageView
+            android:id="@+id/iv"
+            url_src="@{dataModel.urlToImage}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="@dimen/news_image_short_height" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/news_row_overlap"
+            android:layout_marginEnd="@dimen/large"
+            android:layout_marginBottom="@dimen/large"
+            android:clipToPadding="false"
+            android:padding="@dimen/contact_row_card_padding"
+            app:cardCornerRadius="@dimen/medium"
+            app:cardElevation="1dp">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium">
+
+                <TextView
+                    android:id="@+id/title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{dataModel.title}"
+                    android:textColor="@color/colorOnSecondary"
+                    android:textSize="@dimen/large_text_size"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/desc_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{dataModel.description}"
+                    android:textColor="@color/colorOnSecondary"
+                    android:textSize="@dimen/medium_text_size"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/title_tv" />
+
+                <TextView
+                    android:id="@+id/date_tv"
+                    formatDate="@{dataModel.publishedAt}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/medium"
+                    android:layout_marginEnd="@dimen/medium"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/large_text_size"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/ic_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/desc_tv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+
+</layout>

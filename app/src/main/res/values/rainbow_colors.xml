@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  ............................................rainbow colors......................................................-->
+    <color name="bright_pink">#9E024F</color>
+    <color name="red">#B30202</color>
+    <color name="orange">#A65301</color>
+    <color name="yellow">#8F8F01</color>
+    <color name="chartreuse">#387001</color>
+    <color name="green">#017001</color>
+    <color name="spring_green">#01783C</color>
+    <color name="cyan">#028787</color>
+    <color name="azure">#007FFF</color>
+    <color name="blue">#000078</color>
+    <color name="violet">#36016C</color>
+    <color name="magenta">#700170</color>
+
+    <array name="rainbow">
+        <item>@color/bright_pink</item>
+        <item>@color/red</item>
+        <item>@color/orange</item>
+        <item>@color/yellow</item>
+        <item>@color/chartreuse</item>
+        <item>@color/green</item>
+        <item>@color/spring_green</item>
+        <item>@color/cyan</item>
+        <item>@color/azure</item>
+        <item>@color/blue</item>
+        <item>@color/violet</item>
+        <item>@color/magenta</item>
+    </array>
+
+</resources>

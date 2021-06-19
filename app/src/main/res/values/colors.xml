@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary brand color. -->
+    <color name="colorPrimary">@color/blueLight</color>
+    <color name="colorPrimaryVariant">@color/blueDark</color>
+    <color name="colorOnPrimary">@color/grey_light</color>
+
+    <!-- Secondary brand color. -->
+    <color name="colorSecondary">@color/blueLight</color>
+    <color name="colorSecondaryVariant">@color/blueDark</color>
+    <color name="colorOnSecondary">@color/grey_dark</color>
+
+    <!-- Main colors  -->
+    <color name="white">#ffffff</color>
+
+    <color name="blueLight">#FF6200EE</color>
+    <color name="blueDark">#FF3700B3</color>
+
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <color name="grey_dark">#373737</color>
+    <color name="grey_little_dark">#505050</color>
+    <color name="grey">#858585</color>
+    <color name="grey_light">#E3E3E3</color>
+
+    <!-- Contact Details Card color. -->
+    <color name="card_color">@color/white</color>
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#1F000000</color>
+    <color name="black">#000000</color>
+</resources>

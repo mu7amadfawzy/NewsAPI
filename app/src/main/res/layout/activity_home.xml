@@ -43,13 +43,13 @@
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/searchEt"
-                    android:drawablePadding="@dimen/medium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="@dimen/medium"
                     android:background="@color/semi_transparent"
                     android:drawableStart="@drawable/ic_search_primary"
+                    android:drawablePadding="@dimen/medium"
                     android:hint="@string/search_articles"
                     android:padding="@dimen/medium"
                     android:text=""
@@ -59,6 +59,21 @@
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:id="@+id/showMsgTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layoutAnimation="@anim/slide_up_animation"
+            android:lineSpacingExtra="@dimen/medium"
+            android:text="@{viewModel.model.messageText}"
+            android:textAlignment="center"
+            android:textAppearance="@style/TEXT_LARGE"
+            android:textColor="@color/colorOnSecondary"
+            android:textStyle="italic"
+            app:visibility="@{viewModel.model.messageText!=null}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
@@ -70,6 +85,12 @@
             android:layoutAnimation="@anim/slide_in_animation"
             app:behavior_overlapTop="@dimen/overlap"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center"
+            android:progressTint="@color/colorSecondaryVariant"
+            app:visibility="@{viewModel.model.loading}" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

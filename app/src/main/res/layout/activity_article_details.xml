@@ -90,19 +90,6 @@
                         app:layout_constraintTop_toBottomOf="@id/title_tv" />
 
                     <TextView
-                        android:id="@+id/author_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/medium"
-                        android:layout_marginTop="@dimen/medium"
-                        android:text="@{@string/author+`:\t`+viewModel.model.dataModel.author}"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="@dimen/large_text_size"
-                        android:textStyle="italic"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/title_tv" />
-
-                    <TextView
                         android:id="@+id/desc_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -111,7 +98,7 @@
                         android:textColor="@color/colorOnSecondary"
                         android:textSize="@dimen/medium_text_size"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/author_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/date_tv" />
 
                     <TextView
                         android:id="@+id/content_tv"
@@ -128,6 +115,22 @@
                         app:layout_constraintTop_toBottomOf="@id/desc_tv" />
 
                     <TextView
+                        android:id="@+id/author_tv"
+                        linksClickable="@{viewModel.model.dataModel.author}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoLink="web"
+                        android:layout_marginStart="@dimen/medium"
+                        android:layout_marginTop="@dimen/medium"
+                        android:text="@{viewModel.model.dataModel.author}"
+                        android:textColor="@color/colorSecondary"
+                        android:textSize="@dimen/large_text_size"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/content_tv"
+                        app:visibility="@{viewModel.model.dataModel.author!=null}" />
+
+                    <TextView
                         android:id="@+id/source_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -138,7 +141,7 @@
                         android:textSize="@dimen/large_text_size"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/content_tv" />
+                        app:layout_constraintTop_toBottomOf="@id/author_tv" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

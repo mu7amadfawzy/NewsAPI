@@ -1,6 +1,7 @@
 package com.tempo.news.utils
 
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -88,20 +89,21 @@ object BindingUtil {
 
     }
 
-
-    @BindingAdapter("firstChar")
-    @JvmStatic
-    fun firstChar(view: TextView, text: String?) {
-        text?.let {
-            view.text = text.toCharArray()[0].toString()
-        }
-    }
-
     @BindingAdapter("visibility")
     @JvmStatic
     fun visibility(view: View, visible: Boolean) {
         view.visibility = if (visible) View.VISIBLE else View.GONE
     }
+
+    @BindingAdapter("linksClickable")
+    @JvmStatic
+    fun linksClickable(view: TextView, text: String?) {
+        text?.let {
+            view.movementMethod = LinkMovementMethod.getInstance()
+        }
+
+    }
+
 
     @BindingAdapter("formatDate")
     @JvmStatic

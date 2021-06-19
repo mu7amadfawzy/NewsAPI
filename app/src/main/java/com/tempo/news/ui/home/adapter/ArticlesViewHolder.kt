@@ -1,4 +1,4 @@
-package com.tempo.news.ui.home.adapters
+package com.tempo.news.ui.home.adapter
 
 import android.app.Activity
 import androidx.recyclerview.widget.RecyclerView

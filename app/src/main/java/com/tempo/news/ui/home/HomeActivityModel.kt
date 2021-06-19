@@ -9,6 +9,10 @@ import com.tempo.news.BR
  */
 
 class HomeActivityModel : BaseObservable() {
+    fun onSuccess() {
+        messageText = null
+    }
+
     var queryText: String? = ""
 
     @get:Bindable

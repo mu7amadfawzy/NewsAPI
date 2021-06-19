@@ -17,16 +17,13 @@ class HomeActivityViewModel(private val repository: NewsRepository) : ViewModel(
 
     val newsResult = MutableLiveData<List<ArticleDM>>()
 
-    /**
-     * Search a repository based on a query string.
-     */
     init {
         loadData(1)
     }
 
-    fun searchRepo(queryString: String, page: Int = 1) {
+    private fun searchRepo(queryString: String, page: Int = 1) {
         // can be launched in a separate asynchronous job
-        model.loading = true
+        model.loading = page == 1
         viewModelScope.launch(Dispatchers.IO) {
             onDataLoaded(repository.fetchArticles(queryString, page))
         }
@@ -35,13 +32,19 @@ class HomeActivityViewModel(private val repository: NewsRepository) : ViewModel(
     private fun onDataLoaded(result: Result<ResponseDM<List<ArticleDM>>>) {
         when (result) {
             is Result.Success<ResponseDM<List<ArticleDM>>> -> onSuccess(result)
-            is Result.Error -> model.messageText = result.exception
+            is Result.Error -> onError(result)
         }
         model.loading = false
     }
 
+    private fun onError(result: Result.Error) {
+        model.messageText = result.exception
+
+    }
+
     private fun onSuccess(result: Result.Success<ResponseDM<List<ArticleDM>>>) {
         newsResult.postValue(result.data.articles!!)
+        model.onSuccess()
     }
 
     override fun onLoadMore(page: Int, totalRows: Int) {

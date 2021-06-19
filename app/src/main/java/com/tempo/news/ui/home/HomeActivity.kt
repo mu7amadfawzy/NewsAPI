@@ -70,17 +70,9 @@ class HomeActivity : AppCompatActivity() {
 
     private fun configRecycler() {
         binding.recycler.apply {
-            layoutManager = LinearLayoutManager(
-                this@HomeActivity, LinearLayoutManager.VERTICAL, false
-            )
+            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.VERTICAL, false)
             articlesAdapter = ArticlesAdapter(this@HomeActivity, ArrayList(), viewModel)
             adapter = articlesAdapter
-            addItemDecoration(
-                DividerItemDecoration(
-                    this@HomeActivity,
-                    DividerItemDecoration.VERTICAL
-                )
-            )
         }
     }
 

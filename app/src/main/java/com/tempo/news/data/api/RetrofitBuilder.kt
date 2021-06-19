@@ -29,7 +29,9 @@ object RetrofitBuilder {
     }
 
     private fun okHttpClient() = OkHttpClient()
-        .newBuilder().callTimeout(30, TimeUnit.SECONDS)
+        .newBuilder().callTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(60, TimeUnit.SECONDS)
         .addInterceptor(getInterceptor()).build()
 
 

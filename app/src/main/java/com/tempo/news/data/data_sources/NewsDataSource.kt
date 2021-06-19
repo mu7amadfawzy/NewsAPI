@@ -50,6 +50,6 @@ class NewsDataSource(private val apiService: ApiService) {
 
     companion object {
         private const val NETWORK_PAGE_SIZE = 20
-        private const val API_KEY = "397c2d4197f64105b302f4fd74bbd488"
+        private const val API_KEY = "0f2b3b1bec354baab8ae2bf6248d1a58"
     }
 }

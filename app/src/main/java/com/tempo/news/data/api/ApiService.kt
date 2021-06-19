@@ -12,8 +12,7 @@ interface ApiService {
             fetchNews(
         @Query("apiKey") api_key: String,
         @Query("q") q: String,
-        //declared as pageMock because the api returns only one page
-        @Query("pageMock") page: Int,
+        @Query("page") page: Int,
         @Query("pageSize") pageSize: Int,
         @Query("sortBy") sortBy: String,
         @Query("sources") source: String

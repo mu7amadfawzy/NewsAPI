@@ -3,7 +3,7 @@ package com.tempo.news.data.repositories
 import com.tempo.news.data.data_sources.NewsDataSource
 
 /**
- * Class that requests addContact on the remote data source.
+ * Class that requests fetchArticles on the remote data source.
  */
 
 class NewsRepository(val dataSource: NewsDataSource) {

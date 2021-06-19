@@ -21,7 +21,7 @@ News App uses libraries and tools used to build Modern Android application, main
 
 - [Kotlin](https://kotlinlang.org/) first
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) first
-- Architecture components
+- [Architecture components](https://developer.android.com/topic/libraries/architecture)
 - [Retrofit](https://square.github.io/retrofit/)
 - [Picasso](https://square.github.io/picasso/)
 - [OkHttp](https://square.github.io/picasso/)

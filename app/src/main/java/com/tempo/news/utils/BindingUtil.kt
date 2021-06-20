@@ -5,11 +5,9 @@ import android.app.AlertDialog
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.StringRes
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
@@ -87,6 +85,11 @@ object BindingUtil {
         }
     }
 
+    @BindingAdapter("toolbar_title")
+    @JvmStatic
+    fun toolbar_title(view: Toolbar, title: String?) {
+        view.title = title?:""
+    }
 
     @BindingAdapter("url_src")
     @JvmStatic

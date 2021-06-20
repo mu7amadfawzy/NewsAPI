@@ -11,12 +11,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.TempoNews">
         <activity
             android:name="com.tempo.news.ui.home.HomeActivity"
-            android:label=""
-            android:screenOrientation="portrait"
+            android:label="@string/app_name"
             android:theme="@style/Theme.TempoNews.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

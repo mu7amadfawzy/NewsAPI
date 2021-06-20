@@ -37,6 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="none"
+                    app:toolbar_title="@{``}"
                     app:popupTheme="@style/Theme.TempoNews.PopupOverlay"
                     app:titleTextColor="@color/colorPrimary" />
 

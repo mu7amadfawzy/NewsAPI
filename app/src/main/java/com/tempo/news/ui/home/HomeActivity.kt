@@ -11,7 +11,7 @@ import com.tempo.news.databinding.ActivityHomeBinding
 import com.tempo.news.ui.base.BaseActivity
 import com.tempo.news.utils.Extensions.configDebounce
 import com.tempo.news.utils.ThemeDialogHandler
-import com.tempo.news.utils.ViewModelFactory
+import com.tempo.news.di.modules.ViewModelFactory
 import javax.inject.Inject
 
 

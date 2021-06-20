@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tempo.news.di.annotations.ViewModelKey
 import com.tempo.news.ui.home.HomeActivityViewModel
-import com.tempo.news.ui.home.details.ArticleDetailsViewModel
-import com.tempo.news.utils.ViewModelFactory
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

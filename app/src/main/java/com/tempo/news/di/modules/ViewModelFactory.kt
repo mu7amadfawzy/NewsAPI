@@ -1,10 +1,9 @@
-package com.tempo.news.utils
+package com.tempo.news.di.modules
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
-import javax.inject.Singleton
 
 
 /**

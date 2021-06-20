@@ -12,7 +12,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:fitsSystemWindows="true"
         android:transitionName="@string/transition">
 
@@ -81,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            app:toast="@{viewModel.model.showToast?viewModel.model.messageText:null}"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/medium"
             android:text="@{viewModel.model.messageText}"
@@ -88,7 +88,7 @@
             android:textAppearance="@style/TEXT_LARGE"
             android:textColor="@color/colorOnSecondary"
             android:textStyle="italic"
-            app:visibility="@{viewModel.model.messageText!=null&amp;viewModel.model.showToast}" />
+            app:visibility="@{viewModel.model.messageText!=null&amp;!viewModel.model.showToast}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
@@ -100,7 +100,7 @@
             android:layoutAnimation="@anim/slide_in_animation"
             app:behavior_overlapTop="@dimen/overlap"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:snack_error="@{viewModel.model.showToast?viewModel.model.messageText:null}" />
+           />
 
         <ProgressBar
             android:id="@+id/progress"

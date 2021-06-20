@@ -48,8 +48,9 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
 
     private fun observeData() {
         viewModel.newsResult.observe(this) { result ->
-            articlesAdapter.updateDataList(result)
-            if (articlesAdapter.dataList.size == result.size)//if adapter was empty
+            val oldSize = articlesAdapter.itemCount
+            articlesAdapter.updateDataList(result ?: emptyList())
+            if (oldSize == articlesAdapter.itemCount)//if adapter was empty
                 binding.recycler.scheduleLayoutAnimation()
         }
     }

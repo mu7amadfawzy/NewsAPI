@@ -36,9 +36,9 @@ class HomeActivityViewModel @Inject constructor(val repository: ArticlesReposito
 
     private fun onError(result: Result.Error) {
         //snack the error if theres is data already so the recycler is taking the whole screen
-        newsResult.value?.let { model.showToast = newsResult.value.isNullOrEmpty() }
+        model.showToast = newsResult.value!=null||newsResult.value?.isNotEmpty()==true
         model.messageText = result.exception
-        newsResult.postValue(emptyList())
+//        newsResult.value=(emptyList())
     }
 
     private fun onSuccess(result: Result.Success<ResponseDM<List<ArticleDM>>>) {

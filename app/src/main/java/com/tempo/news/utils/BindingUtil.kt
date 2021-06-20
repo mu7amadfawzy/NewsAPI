@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -59,10 +60,16 @@ object BindingUtil {
             view.snackError(error)
     }
 
-    @BindingAdapter("snack_error")
+    @BindingAdapter("snack")
     @JvmStatic
     fun snackError(view: View, error: String?) {
         error?.let { view.snackError(error) }
+    }
+
+    @BindingAdapter("toast")
+    @JvmStatic
+    fun toast(view: View, error: String?) {
+        error?.let { Toast.makeText(view.context,error,Toast.LENGTH_LONG).show() }
     }
 
     @BindingAdapter("url_src")

@@ -5,6 +5,7 @@ import com.tempo.news.data.api.RetrofitBuilder
 import com.tempo.news.data.model.ArticleDM
 import com.tempo.news.data.model.ResponseDM
 import com.tempo.news.data.model.Result
+import com.tempo.news.utils.Constants
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -44,13 +45,12 @@ class ArticlesDataSource @Inject constructor(val apiService: ApiService) {
     ): Result<ResponseDM<List<ArticleDM>>> {
         return RetrofitBuilder.safeApiCall(call = {
             apiService.fetchNews(
-                API_KEY, query, page, NETWORK_PAGE_SIZE, sortBy, source
+                Constants.API_KEY, query, page, NETWORK_PAGE_SIZE, sortBy, source
             )
         })
     }
 
     companion object {
         private const val NETWORK_PAGE_SIZE = 20
-        private const val API_KEY = "0f2b3b1bec354baab8ae2bf6248d1a58"
     }
 }

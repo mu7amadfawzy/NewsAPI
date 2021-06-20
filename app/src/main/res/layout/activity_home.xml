@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:toast="@{viewModel.model.showToast?viewModel.model.messageText:null}"
+            app:showAlert="@{viewModel.model.showToast?viewModel.model.messageText:null}"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/medium"
             android:text="@{viewModel.model.messageText}"

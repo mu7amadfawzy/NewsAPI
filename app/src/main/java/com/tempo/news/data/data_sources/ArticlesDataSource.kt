@@ -45,12 +45,8 @@ class ArticlesDataSource @Inject constructor(val apiService: ApiService) {
     ): Result<ResponseDM<List<ArticleDM>>> {
         return RetrofitBuilder.safeApiCall(call = {
             apiService.fetchNews(
-                Constants.API_KEY, query, page, NETWORK_PAGE_SIZE, sortBy, source
+                Constants.API_KEY, query, page, Constants.NETWORK_PAGE_SIZE, sortBy, source
             )
         })
-    }
-
-    companion object {
-        private const val NETWORK_PAGE_SIZE = 20
     }
 }

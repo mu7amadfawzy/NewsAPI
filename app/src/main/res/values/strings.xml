@@ -22,4 +22,5 @@
     <string name="noDataFound">No Data Found !!</string>
     <string name="search_articles">search articles…</string>
     <string name="source">Source: </string>
+    <string name="smth_went_wrong">Something went wrong</string>
 </resources>

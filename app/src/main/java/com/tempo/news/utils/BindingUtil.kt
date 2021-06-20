@@ -1,6 +1,7 @@
 package com.tempo.news.utils
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.view.View
@@ -55,28 +56,44 @@ object BindingUtil {
 
     @BindingAdapter("snack_error")
     @JvmStatic
-    fun snackError(view: View, @StringRes error: Int) {
-        if (error != 0)
-            view.snackError(error)
+    fun snackError(view: View, @StringRes message: Int) {
+        if (message != 0)
+            view.snackError(message)
     }
 
     @BindingAdapter("snack")
     @JvmStatic
-    fun snackError(view: View, error: String?) {
-        error?.let { view.snackError(error) }
+    fun snackError(view: View, s: String?) {
+        s?.let { view.snackError(s) }
     }
 
     @BindingAdapter("toast")
     @JvmStatic
-    fun toast(view: View, error: String?) {
-        error?.let { Toast.makeText(view.context,error,Toast.LENGTH_LONG).show() }
+    fun toast(view: View, s: String?) {
+        s?.let { Toast.makeText(view.context, s, Toast.LENGTH_LONG).show() }
     }
+
+    @BindingAdapter("showAlert")
+    @JvmStatic
+    fun showAlert(view: View, message: String?) {
+        message?.let {
+            val builder1 = AlertDialog.Builder(view.context)
+            builder1.setMessage(message)
+            builder1.setTitle(view.context.getString(R.string.smth_went_wrong))
+            builder1.setCancelable(true)
+            builder1.setPositiveButton(view.context.getString(R.string.ok), null)
+            val alert11 = builder1.create()
+            alert11.show()
+        }
+    }
+
 
     @BindingAdapter("url_src")
     @JvmStatic
     fun url_src(view: ImageView, url: String?) {
         ImageLoader.loadImage(view, url)
     }
+
     @BindingAdapter("hasFixedSize")
     @JvmStatic
     fun hasFixedSize(view: RecyclerView, value: Boolean?) {

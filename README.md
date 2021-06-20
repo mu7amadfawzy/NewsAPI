@@ -14,7 +14,7 @@ The idea is to keep the app super simple while demonstrating new libraries and t
 
 <img alt="NewsApp Home Page" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/home.png" />
 
-<img alt="NewsApp Night Home Page" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/home.png" />
+<img alt="NewsApp Night Home Page" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/dark_home.png" />
 
 
 ## Libraries and tools 🛠

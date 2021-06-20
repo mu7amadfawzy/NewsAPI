@@ -8,13 +8,15 @@ The codebase focuses 👓 on following key things:
 - Dependency injection 🗡
 - MVVM 
 - Pagination
-- Search
+- User Interface
 
 The idea is to keep the app super simple while demonstrating new libraries and tools which makes it easier to build high quality Android applications.
 
 <img alt="NewsApp Home Page" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/home.png" />
 
-<img alt="NewsApp Night Home Page" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/home.png" />
+<img alt="NewsApp Night Home Page" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/dark_home.png" />
+
+<img alt="Article Details Night" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/details_dark.png" />
 
 
 ## Libraries and tools 🛠
@@ -28,6 +30,8 @@ News App uses libraries and tools used to build Modern Android application, main
 - [Picasso](https://square.github.io/picasso/)
 - [OkHttp](https://square.github.io/picasso/)
 - [Gson](https://square.github.io/okhttp/)
+- [Material Design](https://material.io/design) for user interface
+- [sdp](https://github.com/intuit/ssp) for multi screen dimensions
 - Other [Android Jetpack](https://developer.android.com/jetpack) components
 
 
@@ -38,4 +42,6 @@ The app uses MVVM [Model-View-ViewModel] architecture to have a unidirectional f
 
 ![Architecture](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
 
---------------------
+
+
+### [Developed By Fawzy](https://www.linkedin.com/in/ma7madfawzy/) 

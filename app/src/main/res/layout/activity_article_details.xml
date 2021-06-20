@@ -18,7 +18,7 @@
         android:orientation="vertical"
         android:transitionName="@string/transition">
 
-        <com.tempo.news.ui.custom_views.CorneredImageView
+        <ImageView
             android:id="@+id/iv"
             url_src="@{viewModel.model.dataModel.urlToImage}"
             android:layout_width="match_parent"

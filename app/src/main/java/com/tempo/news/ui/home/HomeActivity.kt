@@ -3,35 +3,36 @@ package com.tempo.news.ui.home
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tempo.news.R
 import com.tempo.news.databinding.ActivityHomeBinding
+import com.tempo.news.ui.base.BaseActivity
 import com.tempo.news.utils.Extensions.configDebounce
 import com.tempo.news.utils.ThemeDialogHandler
 import com.tempo.news.utils.ViewModelFactory
+import javax.inject.Inject
 
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity<HomeActivityViewModel>() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var themeHandlerDialog: ThemeDialogHandler
     private lateinit var binding: ActivityHomeBinding
-    private lateinit var viewModel: HomeActivityViewModel
+
     private lateinit var articlesAdapter: ArticlesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         configViewModel()
-        initViews()
     }
 
-    private fun initViews() {
+    override fun setupViews() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.viewModel = viewModel
-
         setSupportActionBar(binding.toolbar)
         configRecycler()
         configSearch()
@@ -40,9 +41,9 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun configViewModel() {
-        viewModel = ViewModelProvider(this, ViewModelFactory())
-            .get(HomeActivityViewModel::class.java)
         observeData()
+        if (binding.searchEt.text.isNullOrEmpty())
+            viewModel.loadData()
     }
 
     private fun observeData() {
@@ -57,7 +58,7 @@ class HomeActivity : AppCompatActivity() {
         binding.searchEt.configDebounce({
             articlesAdapter.clearData()
             viewModel.onQueryChanged(it.toString())
-        },700,lifecycleScope)
+        }, 700, lifecycleScope)
     }
 
     private fun configRecycler() {
@@ -68,7 +69,6 @@ class HomeActivity : AppCompatActivity() {
             adapter = articlesAdapter
         }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
@@ -90,4 +90,7 @@ class HomeActivity : AppCompatActivity() {
         themeHandlerDialog =
             ThemeDialogHandler(this, callback = null, delegate)
     }
+
+    override fun getInjectViewModel() =
+        ViewModelProvider(this, viewModelFactory).get(HomeActivityViewModel::class.java)
 }

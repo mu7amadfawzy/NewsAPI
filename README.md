@@ -5,6 +5,7 @@ News App is a simple news app 🗞️ which uses [NewsAPI](https://newsapi.org/)
 The codebase focuses 👓 on following key things:
 - Code structuring, style and comments 🗡
 - Kotlin + Coroutines 🛠
+- Dependency injection 🗡
 - MVVM 
 - Pagination
 - Search
@@ -12,7 +13,7 @@ The codebase focuses 👓 on following key things:
 The idea is to keep the app super simple while demonstrating new libraries and tools which makes it easier to build high quality Android applications.
 
 
-![sample](screens/home.png)
+<img alt="NewsApp Home Page" height="450px" src="https://github.com/ma7madfawzy/NewsAPI/blob/master/screens/home.png" />
 
 
 ## Libraries and tools 🛠
@@ -22,7 +23,7 @@ News App uses libraries and tools used to build Modern Android application, main
 - [Kotlin](https://kotlinlang.org/) first
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and [Flow](https://kotlinlang.org/docs/reference/coroutines/flow.html) first
 - [Architecture components](https://developer.android.com/topic/libraries/architecture)
-- [Retrofit](https://square.github.io/retrofit/)
+- [Dagger 2](https://developer.android.com/training/dependency-injection) for dependency injection 🗡- [Retrofit](https://square.github.io/retrofit/)
 - [Picasso](https://square.github.io/picasso/)
 - [OkHttp](https://square.github.io/picasso/)
 - [Gson](https://square.github.io/okhttp/)

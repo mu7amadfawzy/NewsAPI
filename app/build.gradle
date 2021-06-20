@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -37,7 +38,13 @@ android {
         viewBinding true
     }
 }
-
+//When Dagger prints an error, Data binding compilation will halt and
+// sometimes print more than 100 errors, which is the default amount for javac.
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xmaxerrs" << "500" // or whatever number you want
+    }
+}
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -80,5 +87,11 @@ dependencies {
     //for multi screen dimensions
     implementation "com.intuit.ssp:ssp-android:1.0.6"
     implementation "com.intuit.sdp:sdp-android:1.0.6"
+    // Dagger
+    implementation "com.google.dagger:dagger:2.35.1"
+    kapt "com.google.dagger:dagger-compiler:2.35.1"
+    implementation "com.google.dagger:dagger-android:2.35.1"
+    implementation "com.google.dagger:dagger-android-support:2.35.1"
+    kapt "com.google.dagger:dagger-android-processor:2.35.1"
+
 }
-apply plugin: 'kotlin-kapt'

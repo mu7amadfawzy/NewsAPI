@@ -12,7 +12,6 @@
     <dimen name="xLarge">@dimen/_14sdp</dimen>
     <dimen name="xxLarge">@dimen/_18sdp</dimen>
     <dimen name="xxxLarge">@dimen/_24sdp</dimen>
-    <dimen name="huge">@dimen/_12sdp</dimen>
 
     <dimen name="app_bar_height">220dp</dimen>
     <dimen name="app_bar_height_long">320dp</dimen>

@@ -4,17 +4,17 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.tempo.news.data.model.ArticleDM
 import com.tempo.news.databinding.ActivityArticleDetailsBinding
+import com.tempo.news.ui.base.BaseActivity
 import com.tempo.news.utils.Extensions.startActivity
+import dagger.android.support.DaggerAppCompatActivity
 
 
-class ArticleDetailsActivity : AppCompatActivity() {
+class ArticleDetailsActivity : BaseActivity<ArticleDetailsViewModel>() {
 
-    private lateinit var viewModel: ArticleDetailsViewModel
     private lateinit var binding: ActivityArticleDetailsBinding
 
     companion object {
@@ -28,11 +28,10 @@ class ArticleDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         configViewModel()
-        initViews()
     }
 
 
-    private fun initViews() {
+    override fun setupViews() {
         binding = ActivityArticleDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.viewModel = viewModel
@@ -40,7 +39,6 @@ class ArticleDetailsActivity : AppCompatActivity() {
     }
 
     private fun configViewModel() {
-        viewModel = ViewModelProvider(this).get(ArticleDetailsViewModel::class.java)
         viewModel.readExtras(intent.extras)
     }
 
@@ -67,4 +65,6 @@ class ArticleDetailsActivity : AppCompatActivity() {
     override fun onBackPressed() {
         ActivityCompat.finishAfterTransition(this)
     }
+
+    override fun getInjectViewModel()=ViewModelProvider(this).get(ArticleDetailsViewModel::class.java)
 }

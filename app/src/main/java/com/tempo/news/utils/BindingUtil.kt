@@ -70,7 +70,6 @@ object BindingUtil {
     fun url_src(view: ImageView, url: String?) {
         ImageLoader.loadImage(view, url)
     }
-
     @BindingAdapter("hasFixedSize")
     @JvmStatic
     fun hasFixedSize(view: RecyclerView, value: Boolean?) {
@@ -101,9 +100,7 @@ object BindingUtil {
         text?.let {
             view.movementMethod = LinkMovementMethod.getInstance()
         }
-
     }
-
 
     @SuppressLint("SimpleDateFormat")
     @BindingAdapter("formatDate")
@@ -112,7 +109,7 @@ object BindingUtil {
     fun formatDate(view: TextView, text: String?) {
         text?.let {
             val input = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
-            val output = SimpleDateFormat("MMM dd yy")
+            val output = SimpleDateFormat("MMM dd yyyy")
 
             try {
                 val d = input.parse(text)

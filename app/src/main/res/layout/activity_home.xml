@@ -12,21 +12,21 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:fitsSystemWindows="true"
         android:transitionName="@string/transition">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/app_bar_height"
+            android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            android:theme="@style/Theme.TempoNews.AppBarOverlay"
-            app:expandedTitleGravity="bottom|center_horizontal">
+            android:theme="@style/Theme.TempoNews.AppBarOverlay">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/app_bar_height"
                 android:background="@color/colorPrimaryVariant"
                 android:fitsSystemWindows="true"
                 app:contentScrim="@color/colorPrimary"
@@ -37,7 +37,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="parallax"
+                    app:layout_collapseMode="none"
                     app:popupTheme="@style/Theme.TempoNews.PopupOverlay"
                     app:titleTextColor="@color/colorPrimary" />
 
@@ -46,20 +46,35 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_margin="@dimen/medium"
                     android:background="@color/semi_transparent"
                     android:drawableStart="@drawable/ic_search_primary"
                     android:drawablePadding="@dimen/medium"
-                    android:hint="@string/search_articles"
-                    android:padding="@dimen/medium"
-                    android:text=""
                     android:gravity="center_vertical"
+                    android:hint="@string/search_articles"
+                    android:maxLines="1"
+                    android:padding="@dimen/medium"
+                    android:singleLine="true"
+                    android:text=""
                     android:textAppearance="@style/TEXT_LARGE"
                     android:textColor="@color/colorOnPrimary"
                     app:layout_collapseMode="pin" />
-
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/large"
+            android:layout_marginTop="@dimen/xxxLarge"
+            android:gravity="top"
+            android:text="@string/app_name"
+            android:textAppearance="@style/TEXT_XLARGE"
+            android:textColor="@color/colorOnPrimary"
+            android:textStyle="italic|bold"
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="top"
+            app:layout_scrollFlags="scroll|snap" />
 
         <TextView
             android:id="@+id/showMsgTV"
@@ -67,14 +82,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layoutAnimation="@anim/slide_up_animation"
             android:lineSpacingExtra="@dimen/medium"
             android:text="@{viewModel.model.messageText}"
             android:textAlignment="center"
             android:textAppearance="@style/TEXT_LARGE"
             android:textColor="@color/colorOnSecondary"
             android:textStyle="italic"
-            app:visibility="@{viewModel.model.messageText!=null}" />
+            app:visibility="@{viewModel.model.messageText!=null&amp;viewModel.model.showToast}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler"
@@ -85,7 +99,9 @@
             android:layout_margin="@dimen/large"
             android:layoutAnimation="@anim/slide_in_animation"
             app:behavior_overlapTop="@dimen/overlap"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:snack_error="@{viewModel.model.showToast?viewModel.model.messageText:null}" />
+
         <ProgressBar
             android:id="@+id/progress"
             android:layout_width="@dimen/_30sdp"

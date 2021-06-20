@@ -14,6 +14,7 @@ class HomeActivityModel : BaseObservable() {
     }
 
     var queryText: String? = ""
+    var showToast: Boolean? = false
 
     @get:Bindable
     var messageText: String? = null

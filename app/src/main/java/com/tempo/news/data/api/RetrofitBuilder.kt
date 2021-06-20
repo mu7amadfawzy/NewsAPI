@@ -2,6 +2,7 @@ package com.tempo.news.data.api
 
 import android.util.Log
 import com.tempo.news.data.model.Result
+import com.tempo.news.utils.Constants
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,7 +12,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
-    private const val BASE_URL = "https://newsapi.org/v2/"
 
     lateinit var apiService: ApiService
 
@@ -22,7 +22,7 @@ object RetrofitBuilder {
     private fun makeService() {
         val retrofit: Retrofit = Retrofit.Builder()
             .client(okHttpClient())
-            .baseUrl(BASE_URL)
+            .baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         this.apiService = retrofit.create(ApiService::class.java)

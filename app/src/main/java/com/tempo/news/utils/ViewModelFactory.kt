@@ -2,22 +2,29 @@ package com.tempo.news.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.tempo.news.data.api.RetrofitBuilder
-import com.tempo.news.data.data_sources.NewsDataSource
-import com.tempo.news.data.repositories.NewsRepository
-import com.tempo.news.ui.home.HomeActivityViewModel
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
+
 
 /**
- * ViewModel provider factory to instantiate AddContactViewModel.
- * Required given AddContactViewModel has a non-empty constructor
- */
-class ViewModelFactory : ViewModelProvider.Factory {
+ * Whenever we will call the create method of ViewModelProvider.
+ * factory with the ViewModel type as an argument,
+ * the method will use it as key and return the value stored in the map which the ViewModel object.
+ * **/
+class ViewModelFactory @Inject constructor( val viewModelsMap: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>) :
+    ViewModelProvider.Factory {
 
-    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(HomeActivityViewModel::class.java)) {
-            return HomeActivityViewModel(NewsRepository(NewsDataSource(RetrofitBuilder.apiService))) as T
+        val creator = viewModelsMap[modelClass] ?:
+        viewModelsMap.asIterable().firstOrNull {
+            modelClass.isAssignableFrom(it.key)
+        }?.value ?: throw IllegalArgumentException("unknown model class $modelClass")
+        return try {
+            creator.get() as T
+        } catch (e: Exception) {
+            throw RuntimeException(e)
         }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
+
 }

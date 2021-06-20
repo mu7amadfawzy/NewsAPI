@@ -1,12 +1,13 @@
 package com.tempo.news.data.repositories
 
-import com.tempo.news.data.data_sources.NewsDataSource
+import com.tempo.news.data.data_sources.ArticlesDataSource
+import javax.inject.Inject
 
 /**
  * Class that requests fetchArticles on the remote data source.
  */
 
-class NewsRepository(val dataSource: NewsDataSource) {
+class ArticlesRepository@Inject constructor(val dataSource: ArticlesDataSource) :BaseRepository(){
 
     suspend fun fetchArticles(
         q: String = "",

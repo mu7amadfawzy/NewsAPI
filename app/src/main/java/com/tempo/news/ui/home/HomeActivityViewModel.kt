@@ -1,30 +1,27 @@
 package com.tempo.news.ui.home
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.tempo.news.data.model.ArticleDM
 import com.tempo.news.data.model.ResponseDM
 import com.tempo.news.data.model.Result
-import com.tempo.news.data.repositories.NewsRepository
+import com.tempo.news.data.repositories.ArticlesRepository
 import com.tempo.news.ui.base.BaseLoaderAdapter
+import com.tempo.news.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeActivityViewModel(private val repository: NewsRepository) : ViewModel(),
+class HomeActivityViewModel @Inject constructor(val repository: ArticlesRepository) :
+    BaseViewModel(),
     BaseLoaderAdapter.PaginationHandler {
     val model = HomeActivityModel()
 
     val newsResult = MutableLiveData<List<ArticleDM>>()
 
-    init {
-        loadData(1)
-    }
-
     private fun searchRepo(queryString: String, page: Int = 1) {
         // can be launched in a separate asynchronous job
         model.loading = page == 1
-        viewModelScope.launch(Dispatchers.IO) {
+        coroutineScope.launch(Dispatchers.IO) {
             onDataLoaded(repository.fetchArticles(queryString, page))
         }
     }
@@ -38,12 +35,14 @@ class HomeActivityViewModel(private val repository: NewsRepository) : ViewModel(
     }
 
     private fun onError(result: Result.Error) {
+        //snack the error if theres is data already so the recycler is taking the whole screen
+        newsResult.value?.let { model.showToast = newsResult.value.isNullOrEmpty() }
         model.messageText = result.exception
-
+        newsResult.postValue(emptyList())
     }
 
     private fun onSuccess(result: Result.Success<ResponseDM<List<ArticleDM>>>) {
-        newsResult.postValue(result.data.articles)
+        result.data.articles.let { newsResult.postValue(it) }
         model.onSuccess()
     }
 
@@ -51,7 +50,7 @@ class HomeActivityViewModel(private val repository: NewsRepository) : ViewModel(
         loadData(page)
     }
 
-    private fun loadData(page: Int) {
+    fun loadData(page: Int = 1) {
         searchRepo(model.queryText.toString(), page)
     }
 

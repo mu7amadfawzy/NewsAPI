@@ -5,6 +5,7 @@ import com.tempo.news.data.model.ArticleDM
 import com.tempo.news.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ArticleDetailsViewModel @Inject constructor() : BaseViewModel() {
@@ -12,14 +13,14 @@ class ArticleDetailsViewModel @Inject constructor() : BaseViewModel() {
     val model = ArticleDetailsModel()
 
     fun readExtras(extras: Bundle?) {
-        coroutineScope.launch(Dispatchers.IO) {
+        coroutineScope.launch {
             model.loading = true
-            model.dataModel = fetchExtras(extras)
+            model.dataModel = fetchExtrasAsync(extras)
             model.loading = false
         }
     }
 
-    private suspend fun fetchExtras(extras: Bundle?): ArticleDM =
-        extras?.getParcelable("dataModel")!!
-
+    private suspend fun fetchExtrasAsync(extras: Bundle?): ArticleDM? {
+        return withContext(Dispatchers.IO) { extras?.getParcelable("dataModel") }
+    }
 }

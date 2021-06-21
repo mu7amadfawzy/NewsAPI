@@ -1,24 +1,26 @@
 package com.tempo.news.utils
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.tempo.news.R
+import javax.inject.Inject
 
 
-class ThemeDialogHandler(
-    private val context: Context,
-    private val callback: ThemePickerCallback? = null,
-    private val delegate: AppCompatDelegate
+class ThemeDialogHandler @Inject constructor(
+    private val preferences: SharedPreferences
 ) {
+    var callback: ThemePickerCallback? = null
+    var delegate: AppCompatDelegate? = null
     private val THEME_TAG = "Theme"
 
     init {
         AppCompatDelegate.setDefaultNightMode(getWhichMode(getSavedTheme()))
     }
 
-    fun showThemesPickerDialog() {
+    fun showThemesPickerDialog(context: Context,) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(context.getString(R.string.choose_theme_text))
         val styles = arrayOf(
@@ -37,24 +39,19 @@ class ThemeDialogHandler(
 
     private fun onThemeSelected(which: Int) {
         AppCompatDelegate.setDefaultNightMode(getWhichMode(which))
-        delegate.applyDayNight()
+        delegate?.applyDayNight()
         callback?.onThemeSelected(which)
         save(which)
     }
 
     private fun save(which: Int) {
-        getPreferences().edit().putInt(THEME_TAG, which).apply()
+        preferences.edit().putInt(THEME_TAG, which).apply()
     }
 
     private fun getSavedTheme(): Int {
-        return getPreferences().getInt(THEME_TAG, 2)//system default
+        return preferences.getInt(THEME_TAG, 2)//system default
     }
 
-    private fun getPreferences() =
-        context.getSharedPreferences(
-            context.getString(R.string.app_name),
-            AppCompatActivity.MODE_PRIVATE
-        )
 
     private fun getWhichMode(which: Int): Int {
         return when (which) {

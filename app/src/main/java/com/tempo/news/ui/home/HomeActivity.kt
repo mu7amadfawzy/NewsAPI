@@ -3,7 +3,6 @@ package com.tempo.news.ui.home
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tempo.news.R
@@ -11,40 +10,29 @@ import com.tempo.news.databinding.ActivityHomeBinding
 import com.tempo.news.ui.base.BaseActivity
 import com.tempo.news.utils.Extensions.configDebounce
 import com.tempo.news.utils.ThemeDialogHandler
-import com.tempo.news.di.modules.ViewModelFactory
 import javax.inject.Inject
 
 
-class HomeActivity : BaseActivity<HomeActivityViewModel>() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private lateinit var themeHandlerDialog: ThemeDialogHandler
-    private lateinit var binding: ActivityHomeBinding
+class HomeActivity : BaseActivity<HomeActivityViewModel, ActivityHomeBinding>() {
 
     private lateinit var articlesAdapter: ArticlesAdapter
 
+    @Inject
+    lateinit var themeHandlerDialog: ThemeDialogHandler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        configViewModel()
+        observeData()
+        if (binding.searchEt.text.isNullOrEmpty())
+            viewModel.loadData()
     }
 
     override fun setupViews() {
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.viewModel = viewModel
         setSupportActionBar(binding.toolbar)
         configRecycler()
         configSearch()
         initThemeHandler()
     }
 
-
-    private fun configViewModel() {
-        observeData()
-        if (binding.searchEt.text.isNullOrEmpty())
-            viewModel.loadData()
-    }
 
     private fun observeData() {
         viewModel.newsResult.observe(this) { result ->
@@ -80,7 +68,7 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_theme_changer -> {
-                themeHandlerDialog.showThemesPickerDialog()
+                themeHandlerDialog.showThemesPickerDialog(this)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -88,10 +76,13 @@ class HomeActivity : BaseActivity<HomeActivityViewModel>() {
     }
 
     private fun initThemeHandler() {
-        themeHandlerDialog =
-            ThemeDialogHandler(this, callback = null, delegate)
+        themeHandlerDialog.delegate = delegate
     }
 
-    override fun getInjectViewModel() =
-        ViewModelProvider(this, viewModelFactory).get(HomeActivityViewModel::class.java)
+    override fun getViewBinding() = ActivityHomeBinding.inflate(layoutInflater)
+
+    override fun getLayoutRes() = R.layout.activity_home
+
+    override fun getViewModelClass() = HomeActivityViewModel::class.java
+
 }

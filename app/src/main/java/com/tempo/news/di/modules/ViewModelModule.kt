@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.tempo.news.di.annotations.ViewModelKey
 import com.tempo.news.ui.home.HomeActivityViewModel
+import com.tempo.news.ui.home.details.ArticleDetailsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -20,5 +21,8 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(HomeActivityViewModel::class)
     internal abstract fun bindHomeActivityViewModel(viewModel: HomeActivityViewModel): ViewModel
-
+    @Binds
+    @IntoMap
+    @ViewModelKey(ArticleDetailsViewModel::class)
+    internal abstract fun bindDetailsViewModel(viewModel: ArticleDetailsViewModel): ViewModel
 }

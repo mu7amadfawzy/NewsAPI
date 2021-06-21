@@ -2,25 +2,22 @@ package com.tempo.news.ui.home.details
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.ViewModelProvider
+import com.tempo.news.R
 import com.tempo.news.data.model.ArticleDM
 import com.tempo.news.databinding.ActivityArticleDetailsBinding
 import com.tempo.news.ui.base.BaseActivity
 import com.tempo.news.utils.Extensions.startActivity
-import dagger.android.support.DaggerAppCompatActivity
 
 
-class ArticleDetailsActivity : BaseActivity<ArticleDetailsViewModel>() {
-
-    private lateinit var binding: ActivityArticleDetailsBinding
+class ArticleDetailsActivity :
+    BaseActivity<ArticleDetailsViewModel, ActivityArticleDetailsBinding>() {
 
     companion object {
-        fun start(activity: Activity, view: View, articleDm: ArticleDM?) {
+        fun start(activity: Activity, view: View, dm: ArticleDM?) {
             val extras = Bundle()
-            extras.putParcelable("dataModel", articleDm)
+            extras.putParcelable("dataModel", dm)
             activity.startActivity(view, ArticleDetailsActivity::class.java, extras)
         }
     }
@@ -32,9 +29,6 @@ class ArticleDetailsActivity : BaseActivity<ArticleDetailsViewModel>() {
 
 
     override fun setupViews() {
-        binding = ActivityArticleDetailsBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.viewModel = viewModel
         initToolbar()
     }
 
@@ -47,24 +41,12 @@ class ArticleDetailsActivity : BaseActivity<ArticleDetailsViewModel>() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     override fun onBackPressed() {
         ActivityCompat.finishAfterTransition(this)
     }
 
-    override fun getInjectViewModel()=ViewModelProvider(this).get(ArticleDetailsViewModel::class.java)
+    override fun getLayoutRes() = R.layout.activity_article_details
+    override fun getViewModelClass() = ArticleDetailsViewModel::class.java
+    override fun getViewBinding() = ActivityArticleDetailsBinding.inflate(layoutInflater)
+
 }
